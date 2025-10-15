@@ -1,13 +1,17 @@
 import streamlit as st
 import re, json, os
 import nltk
-LOCAL_NLTK_PATH = os.path.join(os.path.dirname(__file__), "nltk_data")
+import shutil
+
+# === 1️⃣ Define the absolute path to your included NLTK data ===
+LOCAL_NLTK_PATH = os.path.join(os.getcwd(), "nltk_data")
+
+# === 2️⃣ Force NLTK to ONLY use this path ===
 nltk.data.path.clear()
 nltk.data.path.append(LOCAL_NLTK_PATH)
+
 corpora_path = os.path.join(LOCAL_NLTK_PATH, "corpora")
-for f in os.listdir(corpora_path):
-    if f.endswith(".zip"):
-        os.remove(os.path.join(corpora_path, f))
+
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
 from PyPDF2 import PdfReader
