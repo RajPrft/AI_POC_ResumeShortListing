@@ -1,27 +1,36 @@
 import os
 import nltk
 import streamlit as st
+import shutil
 
-# Tell NLTK where to find the included data
-nltk.data.path.append(os.path.join(os.getcwd(), 'nltk_data'))
+# === 1️⃣ Define the absolute path to your included NLTK data ===
+LOCAL_NLTK_PATH = os.path.join(os.getcwd(), "nltk_data")
 
-# (Optional) Verify availability
+# === 2️⃣ Force NLTK to ONLY use this path ===
+nltk.data.path.clear()
+nltk.data.path.append(LOCAL_NLTK_PATH)
+
+# === 3️⃣ Ensure wordnet.zip does NOT exist anywhere ===
+zip_path = os.path.join(LOCAL_NLTK_PATH, "corpora", "wordnet.zip")
+if os.path.exists(zip_path):
+    try:
+        os.remove(zip_path)
+        st.warning("Removed stray wordnet.zip from local nltk_data")
+    except Exception as e:
+        st.error(f"Couldn't remove {zip_path}: {e}")
+
+# === 4️⃣ Optional: Log current NLTK search paths for debugging ===
+st.write("✅ NLTK data paths:")
+for p in nltk.data.path:
+    st.code(p)
+
+# === 5️⃣ Quick verification to confirm WordNet loads ===
 try:
     from nltk.corpus import wordnet
-    _ = wordnet.synsets('dog')  # quick test
-except LookupError:
-    st.warning("WordNet not found. Please ensure nltk_data is present in repo.")
-
-# ---- Your normal Streamlit app code below ----
-st.title("NLTK WordNet Streamlit App")
-
-word = st.text_input("Enter a word:")
-if word:
-    from nltk.corpus import wordnet
-    syns = wordnet.synsets(word)
-    if syns:
-        st.write(f"Definitions for '{word}':")
-        for s in syns[:5]:
-            st.write("-", s.definition())
-    else:
-        st.write("No definitions found.")
+    syns = wordnet.synsets("good")
+    st.success(f"WordNet loaded successfully! Found {len(syns)} synsets for 'good'")
+except LookupError as e:
+    st.error("⚠️ WordNet not found. Ensure nltk_data/corpora/wordnet exists.")
+    st.code(str(e))
+except Exception as e:
+    st.error(f"Unexpected error: {e}")
