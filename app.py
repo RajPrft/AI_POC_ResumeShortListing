@@ -46,8 +46,13 @@ st.write("")
 # === 6️⃣ Add a navigation button to go to another page ===
 # st.markdown("---")  
 
-col1, col2, col3 = st.columns([1, 1, "auto"])
+col1, col2, col3 = st.columns([1, 1, 3]) # Example: third column is 3 times wider than the first two.
+
+# Place content within the third column
 with col3:
-    st.button("Start →")
-if st.button("Start →"):
-    st.switch_page("pages/0_Select_Resume.py")
+    # Create a button labeled "Start →"
+    # The 'if st.button( Start → ):' within the 'with col3:' block
+    # means the button is defined and its action is immediately checked.
+    if st.button("Start →"):
+        # If the button is clicked, switch to the specified page
+        st.switch_page("pages/0_Select_Resume.py")
