@@ -35,15 +35,17 @@ if os.path.exists(zip_path):
 # except Exception as e:
 #     st.error(f"Unexpected error: {e}")
 
-    st.markdown("<h1 style='text-align: center; color: #2E86C1;'>🤖 AI POC</h1>", unsafe_allow_html=True)
-    st.markdown("<h2 style='text-align: center;'>Welcome to <b>Resume Shortlisting Utility</b></h2>", unsafe_allow_html=True)
-    st.markdown("<p style='text-align: center; font-size: 18px;'>Click the button below to start uploading your resume.</p>", unsafe_allow_html=True)
+st.title("Welcome!")
 
-    st.write("")
-    st.write("")
+st.markdown("<h1 style='text-align: center; color: #2E86C1;'>AI POC</h1>", unsafe_allow_html=True)
+st.markdown("<h2 style='text-align: center;'>Welcome to <b>Resume Shortlisting Utility</b></h2>", unsafe_allow_html=True)
+st.markdown("<p style='text-align: center; font-size: 18px;'>Click the button below to start uploading your resume.</p>", unsafe_allow_html=True)
+
+st.write("")
+st.write("")
 # === 6️⃣ Add a navigation button to go to another page ===
-st.markdown("---")
-st.subheader("Next Step")
+# st.markdown("---")
+
 
 if st.button("Start →"):
-    st.switch_page("pages/1_Backend_technologies.py")
+    st.switch_page("pages/0_Select_Resume.py")
