@@ -20,17 +20,30 @@ if os.path.exists(zip_path):
         st.error(f"Couldn't remove {zip_path}: {e}")
 
 # === 4️⃣ Optional: Log current NLTK search paths for debugging ===
-st.write("✅ NLTK data paths:")
-for p in nltk.data.path:
-    st.code(p)
+# st.write("✅ NLTK data paths:")
+# for p in nltk.data.path:
+#     st.code(p)
 
-# === 5️⃣ Quick verification to confirm WordNet loads ===
-try:
-    from nltk.corpus import wordnet
-    syns = wordnet.synsets("good")
-    st.success(f"WordNet loaded successfully! Found {len(syns)} synsets for 'good'")
-except LookupError as e:
-    st.error("⚠️ WordNet not found. Ensure nltk_data/corpora/wordnet exists.")
-    st.code(str(e))
-except Exception as e:
-    st.error(f"Unexpected error: {e}")
+# # === 5️⃣ Quick verification to confirm WordNet loads ===
+# try:
+#     from nltk.corpus import wordnet
+#     syns = wordnet.synsets("good")
+#     st.success(f"WordNet loaded successfully! Found {len(syns)} synsets for 'good'")
+# except LookupError as e:
+#     st.error("⚠️ WordNet not found. Ensure nltk_data/corpora/wordnet exists.")
+#     st.code(str(e))
+# except Exception as e:
+#     st.error(f"Unexpected error: {e}")
+
+    st.markdown("<h1 style='text-align: center; color: #2E86C1;'>🤖 AI POC</h1>", unsafe_allow_html=True)
+    st.markdown("<h2 style='text-align: center;'>Welcome to <b>Resume Shortlisting Utility</b></h2>", unsafe_allow_html=True)
+    st.markdown("<p style='text-align: center; font-size: 18px;'>Click the button below to start uploading your resume.</p>", unsafe_allow_html=True)
+
+    st.write("")
+    st.write("")
+# === 6️⃣ Add a navigation button to go to another page ===
+st.markdown("---")
+st.subheader("Next Step")
+
+if st.button("Start →"):
+    st.switch_page("pages/1_Backend_technologies.py")
