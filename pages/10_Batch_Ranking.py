@@ -24,7 +24,7 @@ from nltk.tokenize import sent_tokenize
 st.title("Upload Multiple Resumes")
 
 uploaded_files = st.file_uploader("Upload multiple resumes (pdf/docx)", type=["pdf","docx"], accept_multiple_files=True)
-folder_path = st.text_input("Or provide server-side folder path (absolute):", "")
+# folder_path = st.text_input("Or provide server-side folder path (absolute):", "")
 
 use_ai = st.checkbox("Use AI (spaCy) to augment detection", value=False)
 include_preview = st.checkbox("Include resume text preview in results", value=False)
@@ -53,14 +53,14 @@ if st.button("Run Batch Ranking"):
     if uploaded_files:
         for f in uploaded_files:
             files.append((f, f.name))
-    if folder_path:
-        p = Path(folder_path)
-        if p.exists() and p.is_dir():
-            for ext in ("*.pdf","*.docx"):
-                for fp in p.glob(ext):
-                    files.append((fp, fp.name))
-        else:
-            st.error("Folder path invalid.")
+#     if folder_path:
+#         p = Path(folder_path)
+#         if p.exists() and p.is_dir():
+#            for ext in ("*.pdf","*.docx"):
+#                 for fp in p.glob(ext):
+#                     files.append((fp, fp.name))
+#         else:
+#             st.error("Folder path invalid.")
     if not files:
         st.warning("No resumes provided.")
     else:
