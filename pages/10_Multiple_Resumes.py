@@ -3,10 +3,9 @@
 import streamlit as st
 from pathlib import Path
 import pandas as pd
-import json
+import re, json, os
 from PyPDF2 import PdfReader
 from docx import Document
-import re
 import nltk
 # === 1️⃣ Define the absolute path to your included NLTK data ===
 LOCAL_NLTK_PATH = os.path.join(os.getcwd(), "nltk_data")
