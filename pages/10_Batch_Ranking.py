@@ -26,7 +26,7 @@ st.title("Upload Multiple Resumes")
 uploaded_files = st.file_uploader("Upload multiple resumes (pdf/docx)", type=["pdf","docx"], accept_multiple_files=True)
 
 
-use_ai = st.checkbox("Use AI (spaCy) to augment detection", value=False)
+# use_ai = st.checkbox("Use AI (spaCy) to augment detection", value=False)
 
 
 def extract_text(file_obj, fname):
